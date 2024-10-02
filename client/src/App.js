@@ -14,16 +14,15 @@ const App = () => {
   const [seed, setSeed] = useState(42);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `/api/generate?region=${selectedRegion}&errors=${errorAmount}&seed=${seed}`
+      );
+      const result = await response.json();
+      setData(result);
+    };
     fetchData();
   }, [selectedRegion, errorAmount, seed]);
-
-  const fetchData = async () => {
-    const response = await fetch(
-      `/api/generate?region=${selectedRegion}&errors=${errorAmount}&seed=${seed}`
-    );
-    const result = await response.json();
-    setData(result);
-  };
 
   const handleRegionChange = (e) => {
     setSelectedRegion(e.target.value);
