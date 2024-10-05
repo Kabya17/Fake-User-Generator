@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `/api/generate?region=${selectedRegion}&errors=${errorAmount}&seed=${seed}`
+       `/.netlify/functions/generate?region=${selectedRegion}&errors=${errorAmount}&seed=${seed}`
       );
       const result = await response.json();
       setData(result);
